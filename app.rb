@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/namespace'
-require "sinatra/json"
+require 'sinatra/json'
 
 module CentralReg
   class App < Sinatra::Application
@@ -13,8 +13,12 @@ module CentralReg
 
     namespace '/v1' do
       require_relative 'app/routes/base'
-
       register CentralReg::Routes::Base
+
+      namespace '/dns' do
+        require_relative 'app/routes/dns'
+        register CentralReg::Routes::DNS
+      end
     end
 
   end
